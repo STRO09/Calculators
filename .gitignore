@@ -1,0 +1,53 @@
+# Python bytecode files
+*.pyc
+*.pyo
+__pycache__/
+
+# Virtual environment
+venv/
+.env/
+
+# Flask instance folder (for production/deployment)
+instance/
+
+# IDEs and editors (you can modify this based on your editor)
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Coverage files (from pytest, for example)
+.coverage
+*.cover
+*.hypothesis/
+
+# Flask config files
+config.py
+
+# Jupyter Notebooks
+.ipynb_checkpoints/
+
+# PyInstaller
+*.spec
+
+# Distribution/Packaging
+build/
+dist/
+*.egg-info/
+
+# mypy
+.mypy_cache/
+
+# Pytest cache
+.pytest_cache/
+
+# Pycharm
+.idea/
+
+# Local development environment files (e.g., for Docker)
+docker-compose.override.yml

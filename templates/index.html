@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scientific Calculator</title>
+    <link rel="stylesheet" href="../static/styles.css" />
+    <script>
+      let isResult = false; // Flag to track if the input field contains a result
+
+      function appendToExpression(value) {
+        let expressionField = document.getElementById("expression");
+
+        // If the input field contains a result from previous calculation
+        if (isResult) {
+          // Clear the field before adding new input
+          expressionField.value = value;
+          isResult = false; // Reset the result flag
+        } else {
+          // Otherwise, append value to the expression
+          expressionField.value += value;
+        }
+      }
+
+      function clearExpression() {
+        document.getElementById("expression").value = ""; // Clear the entire input
+        isResult = false; // Reset result flag
+      }
+
+      function clearLastCharacter() {
+        let expression = document.getElementById("expression").value;
+        document.getElementById("expression").value = expression.slice(0, -1); // Remove last character
+      }
+
+      function calculateExpression() {
+        let expression = document.getElementById("expression").value;
+        fetch("/calculate", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: "expression=" + encodeURIComponent(expression),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("expression").value = data.result; // Show result in input field
+            isResult = true; // Set the flag to true when a result is shown
+          });
+      }
+    </script>
+  </head>
+  <body>
+    <div class="calculator" style="text-align: center">
+      <h1>Scientific Calculator</h1>
+      <input type="text" id="expression" placeholder="" readonly />
+      <div class="buttons">
+        <!-- First Row -->
+        <div class="button-row">
+          <button onclick="appendToExpression('7')">7</button>
+          <button onclick="appendToExpression('8')">8</button>
+          <button onclick="appendToExpression('9')">9</button>
+          <button onclick="appendToExpression('/')">/</button>
+        </div>
+        <!-- Second Row -->
+        <div class="button-row">
+          <button onclick="appendToExpression('4')">4</button>
+          <button onclick="appendToExpression('5')">5</button>
+          <button onclick="appendToExpression('6')">6</button>
+          <button onclick="appendToExpression('*')">*</button>
+        </div>
+        <!-- Third Row -->
+        <div class="button-row">
+          <button onclick="appendToExpression('1')">1</button>
+          <button onclick="appendToExpression('2')">2</button>
+          <button onclick="appendToExpression('3')">3</button>
+          <button onclick="appendToExpression('-')">-</button>
+        </div>
+        <!-- Fourth Row -->
+        <div class="button-row">
+          <button onclick="appendToExpression('0')">0</button>
+          <button onclick="appendToExpression('.')">.</button>
+          <button onclick="appendToExpression('(')">(</button>
+          <button onclick="appendToExpression(')')">)</button>
+        </div>
+        <!-- Fifth Row -->
+        <div class="button-row">
+          <button onclick="clearExpression()">C</button>
+          <button onclick="clearLastCharacter()">←</button>
+          <button onclick="calculateExpression()">=</button>
+          <button onclick="appendToExpression('+')">+</button>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
