@@ -1,0 +1,143 @@
+/* Reset margin and padding for all elements */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Body setup */
+body {
+  font-family: "Arial", sans-serif;
+  background-color: #f4f7fb; /* Light background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+/* Calculator container */
+.calculator {
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px; /* Reduced max-width for better scaling */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+}
+
+/* Title */
+h1 {
+  font-size: 36px;
+  color: #4b4b4b;
+  margin-bottom: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Input field */
+input {
+  width: 100%;
+  padding: 15px;
+  font-size: 30px;
+  text-align: right;
+  background-color: #f9f9f9;
+  border: 2px solid #ddd;
+  border-radius: 10px;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
+  transition: border-color 0.3s ease-in-out;
+}
+
+input:focus {
+  border-color: #4285f4; /* Blue outline on focus */
+  outline: none;
+}
+
+/* Button grid */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+/* Row for buttons */
+.button-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+/* Individual button */
+button {
+  width: 70px;
+  height: 70px;
+  font-size: 20px;
+  background-color: #f0f0f0;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: bold;
+  color: #333;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust for larger function buttons */
+button:nth-child(n + 17) {
+  font-size: 16px;
+  width: 80px;
+}
+
+/* Button hover effect */
+button:hover {
+  background-color: #e0e0e0;
+  transform: scale(1.05);
+}
+
+/* Button active effect */
+button:active {
+  background-color: #ccc;
+  transform: scale(0.95);
+}
+
+/* Button focus (removes outline) */
+button:focus {
+  outline: none;
+}
+
+/* Result area */
+.result {
+  margin-top: 15px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #4285f4; /* Use a more distinctive color for results */
+  text-align: center;
+}
+
+/* Media query for better responsiveness */
+@media (max-width: 500px) {
+  .calculator {
+    padding: 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  input {
+    font-size: 26px;
+    padding: 12px;
+  }
+
+  button {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+}
